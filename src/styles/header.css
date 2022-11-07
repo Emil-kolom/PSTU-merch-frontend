@@ -1,0 +1,44 @@
+@import 'container.css';
+.header{
+    background: #0c426f;
+    display: flex;
+    color: whitesmoke;
+    max-height: 5em;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.header a{
+    color: whitesmoke;
+    margin: 5px 20px;
+    display: block;
+    padding: 5px;
+    background: rgba(211, 29, 29, 0.92);
+    border-radius: 5px;
+    /*border: solid rgba(211, 29, 29, 0.92);*/
+    align-self: center;
+    text-decoration: none;
+    user-select: none;
+    transition: 0.3s;
+}
+
+.header a:hover {
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header .logoWrap{
+    display: flex;
+    /*max-height: var(--header-height-large);*/
+}
+
+.header .logoWrap .logo{
+    position: relative;
+    align-self: flex-start;
+    max-height: 120px;
+}
+
+.header nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -1,0 +1,30 @@
+footer{
+    display: flex;
+    background: #0c426f;
+    color: whitesmoke;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+footer div{
+    margin-right: 15px;
+}
+
+footer div a{
+    color: whitesmoke;
+    display: block;
+}
+
+.contact{
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-item{
+    display: flex;
+    align-items: center;
+}
+
+.email{
+    text-decoration: #282c34 ;
+}

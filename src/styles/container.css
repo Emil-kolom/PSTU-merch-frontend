@@ -1,0 +1,11 @@
+*{
+    --header-height-large: 45px;
+    --container-left-pading: 25px;
+}
+.container{
+    padding: 0 var(--container-left-pading);
+}
+
+main{
+    margin-top: var(--header-height-large);
+}

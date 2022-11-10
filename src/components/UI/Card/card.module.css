@@ -2,7 +2,6 @@
     position: relative;
     min-width: 260px;
     max-width: 350px;
-    flex-grow: 1;
 }
 
 .cardRoot {

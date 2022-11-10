@@ -1,5 +1,5 @@
 .cardContainer{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, auto));
-    grid-column-gap: 10px;
 }
+/* Чтобы установить свою сетку от с мин и максим. шириной нужно использовать media запросы*/

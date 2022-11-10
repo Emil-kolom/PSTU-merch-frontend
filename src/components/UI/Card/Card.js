@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import classes from './card.module.css'
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import testLogo from '../../../img/logo.svg'
-import {Button} from "@mui/material";
 
 // const Card = ({children, ...props}) => {
 const Card = (props) => {
 	const [isHoverVisible, setHoverVisible] = useState(false)
-	console.log(props.page)
 	let hoverLink = <div className={classes.hoverWrap}>
 		<button className={classes.hoverItem}>Перейти!</button>
 	</div>

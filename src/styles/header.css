@@ -31,6 +31,18 @@
     /*max-height: var(--header-height-large);*/
 }
 
+.header #title-block{
+    display: flex;
+    cursor: pointer;
+}
+
+#title-block #title{
+    align-self: center;
+    padding-left: 12px;
+    font-family: cursive;
+    letter-spacing: 0.2rem;
+}
+
 .header .logoWrap .logo{
     position: relative;
     align-self: flex-start;

@@ -1,7 +1,8 @@
 .cardWrap{
     position: relative;
     min-width: 260px;
-    width: 340px;
+    max-width: 350px;
+    flex-grow: 1;
 }
 
 .cardRoot {

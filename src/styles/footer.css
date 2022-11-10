@@ -1,30 +1,38 @@
 footer{
-    display: flex;
     background: #0c426f;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-wrap{
+    display: flex;
     color: whitesmoke;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-footer div{
-    margin-right: 15px;
-}
-
 footer div a{
     color: whitesmoke;
-    display: block;
+    display: inline-block;
 }
 
 .contact{
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .contact-item{
     display: flex;
     align-items: center;
+    margin-right: 5%;
 }
 
 .email{
     text-decoration: #282c34 ;
+}
+
+.footer-item{
+    padding: 0 15px;
+    /*flex-grow: 2;*/
+    /*flex-shrink: 1;*/
 }

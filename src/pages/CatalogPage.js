@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Card from "../components/UI/Card/Card";
-import {ScrollRestoration} from "react-router-dom";
 
 const CatalogPage = () => {
 	let CategoryTitle = 'Current category'

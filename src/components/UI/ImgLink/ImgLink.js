@@ -8,16 +8,15 @@ const ImgLink = ({page, ...props}) => {
     let hoverLink = <div className={classes.hoverWrap}>
         <button
             className={classes.hoverItem}
-            onClick={(e)=>{e.preventDefault()}}
         >Перейти!</button>
     </div>
     return (
         <Link to={page}
               className={classes.cardRoot}
-              preventScrollReset={false}
               onMouseEnter={() => setHoverVisible(true)}
               onMouseLeave={() => setHoverVisible(false)}
-              {...props}>
+              {...props}
+        >
             <picture>
                 <source srcSet={testLogo}/>
                 <img alt={'TEST'} src={testLogo}/>

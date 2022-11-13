@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {Navigate, Route, Routes, ScrollRestoration} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import MainPage from "../pages/MainPage";
-import Header from "./Header";
-import Footer from "./Footer";
 import CatalogPage from "../pages/CatalogPage";
 
+{/* TODO: add ScrollRestoration https://reactrouter.com/en/6.4.2/start/tutorial#optimistic-ui*/}
 const AppRouter = () => {
 	const [pageURL, setPageURL] = useState(['/page1', '/page2Test'])
 	return (

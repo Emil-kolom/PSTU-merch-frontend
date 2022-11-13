@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, ScrollRestoration} from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -13,7 +13,7 @@ const AppRouter = () => {
 			{pageURL.map((pathURL,i)=>{
 				return <Route key={i}
 				       path={pathURL}
-				element={<CatalogPage/>}></Route>
+				element={<CatalogPage/>}/>
 			})}
 			<Route path="*" element={
 				/* replace - заменит текущую запись в стеке истории вместо добавления новой.*/

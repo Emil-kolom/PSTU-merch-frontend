@@ -5,6 +5,7 @@ import logo from '../img/PSTU-logo-300x281.png'
 import {Drawer, IconButton} from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {Link} from "react-router-dom";
+import Cart from "./Cart";
 
 const Header = () => {
     let [navList, setNavList] = useState([])
@@ -41,12 +42,7 @@ const Header = () => {
                     onClick={() => setIsDrawerOpen(true)}>
                     <ShoppingCartIcon sx={{color: '#f5f5f5'}}></ShoppingCartIcon>
                 </IconButton>
-                <Drawer
-                    anchor={"right"}
-                    open={isDrawerOpen}
-                    onClose={() => setIsDrawerOpen(false)}>
-                    Кошик
-                </Drawer>
+                <Cart isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen}/>
             </div>
         </header>
     );

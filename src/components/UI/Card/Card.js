@@ -2,24 +2,13 @@ import React, {useState} from 'react';
 import classes from './card.module.css'
 import {Link} from "react-router-dom";
 import testLogo from '../../../img/logo.svg'
+import ImgLink from "../ImgLink/ImgLink";
 
 // const Card = ({children, ...props}) => {
 const Card = (props) => {
-	const [isHoverVisible, setHoverVisible] = useState(false)
-	let hoverLink = <div className={classes.hoverWrap}>
-		<button className={classes.hoverItem}>Перейти!</button>
-	</div>
 	return (
 		<div className={classes.cardWrap}>
-			<Link to={props.page} className={classes.cardRoot}
-			      onMouseEnter={() => setHoverVisible(true)}
-			      onMouseLeave={() => setHoverVisible(false)}>
-				<picture>
-					<source srcSet={testLogo}/>
-					<img alt={'TEST'} src={testLogo}/>
-				</picture>
-				{isHoverVisible ? hoverLink : null}
-			</Link>
+			<ImgLink page={props.page}/>
 			<div className={classes.titleWrap}>
 				<Link className={classes.title} to={props.page}>{props.header}</Link>
 			</div>

@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import '../styles/container.css'
 import '../styles/cardContainer.css'
 import Card from "../components/UI/Card/Card";
+import {ScrollRestoration} from "react-router-dom";
 
 
 const MainPage = () => {

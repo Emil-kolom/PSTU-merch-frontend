@@ -4,18 +4,18 @@ import ImgLink from "../ImgLink/ImgLink";
 
 const currentNumberReg = new RegExp('^[1-9]?\\d{0,2}$');
 
-const ListItem = ({onRedirect,onDelete, ...props}) => {
+const ListItem = ({onRedirect, onDelete, ...props}) => {
     /* TODO: replace it on props*/
-    let [productCount,setProductCount]  = useState(1)
+    let [productCount, setProductCount] = useState(1)
     let [inputText, setInputText] = useState('1')
-    const decrement = ()=>{
-        if(productCount > 1){
+    const decrement = () => {
+        if (productCount > 1) {
             setProductCount(--productCount)
             setInputText(`${productCount}`)
         }
     }
-    const increment = ()=>{
-        if(productCount < 1000){
+    const increment = () => {
+        if (productCount < 1000) {
             setProductCount(++productCount)
             setInputText(`${productCount}`)
         }
@@ -23,7 +23,7 @@ const ListItem = ({onRedirect,onDelete, ...props}) => {
 
     function changeInputPrice(e) {
         let num = e.target.value
-        if(currentNumberReg.test(num)){
+        if (currentNumberReg.test(num)) {
             setInputText(num)
         }
     }
@@ -31,27 +31,30 @@ const ListItem = ({onRedirect,onDelete, ...props}) => {
     function changePrice(e) {
         let num = parseInt(e.target.value)
         console.log(num)
-        if(num){
+        if (num) {
             setProductCount(num)
             setInputText(`${num}`)
-        }else {
+        } else {
             setInputText(`${productCount}`)
         }
     }
 
     return (
         <div className={classes.wrapper}>
-            <ImgLink page={'/test'}
-                     onClick={onRedirect}
-                     style={{
-                         minWidth: '160px',
-                         maxHeight: '150px'
-                     }} />
-            <div className={classes.descriptionWrap}>
-                <p className={classes.productTitle}>{'Назва товару'}</p>
+            <div className={classes.productImgWrap}>
+                <ImgLink page={'/test'}
+                         onClick={onRedirect}
+                         style={{
+                             minWidth: '160px',
+                             maxHeight: '150px',
+                             boxSizing: 'border-box'
+                         }}/>
                 <button className={classes.delProd}
                         onClick={onDelete}
                 >Прибрати</button>
+            </div>
+            <div className={classes.descriptionWrap}>
+                <p className={classes.productTitle}>{'Назва товару'}</p>
                 <div className={classes.sizeBlockWrap}>
                     <p>Розмір:</p>
                     <input type={"radio"} value={'S'} id={'S'} name={'size'}/>
@@ -59,8 +62,6 @@ const ListItem = ({onRedirect,onDelete, ...props}) => {
                     <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
                     <label htmlFor="SX">SX</label>
                 </div>
-                <p className={classes.productPrice}>{'ціна'}</p>
-                <p className={classes.productPriceDetail}>{`початкова ціна * ${productCount} = ціна`}</p>
                 <p>Кількість:</p>
                 <div className={classes.inputNumberWrap}>
                     <button onClick={decrement}>-</button>
@@ -71,7 +72,9 @@ const ListItem = ({onRedirect,onDelete, ...props}) => {
                     />
                     <button onClick={increment}>+</button>
                 </div>
-             </div>
+                <p className={classes.productPrice}>{'ціна'}</p>
+                <p className={classes.productPriceDetail}>{`початкова ціна * ${productCount} = ціна`}</p>
+            </div>
         </div>
     );
 };

@@ -13,19 +13,21 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen, ...props}) => {
             open={isDrawerOpen}
             onClose={() => setIsDrawerOpen(false)}>
             <div className={'back'} onClick={()=>{setIsDrawerOpen(false)}}>
-                <LeftArrow/>
+                <LeftArrow fill={'white'}/>
                 <h3>Повернутися до покупок</h3>
             </div>
-            <h3>Обрані товари</h3>
+            <h3 className={'titleCart'}>Обрані товари</h3>
             {/* Картка з товаром*/}
             <ListItem onRedirect={()=>{setIsDrawerOpen(false)}}/>
 
-            <div>
+            <div className={'sumPriceWrap'}>
                 <p>Загалом:</p>
-                <p>{'Ціна'}</p>
+                <p className={'sumPrice'}>{'Ціна'}</p>
             </div>
 
-            <button>Перейти до оформлення!</button>
+            <div className={'flexCenter'}>
+                <button id={'checkoutButton'}>Перейти до оформлення!</button>
+            </div>
 
         </Drawer>
     );

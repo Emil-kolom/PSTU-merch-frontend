@@ -3,8 +3,50 @@
     align-items: center;
     padding: 0 10px;
     cursor: pointer;
+    background: #0c426f;
+    color: white;
 }
 
 .back h3{
     margin-left: 0.2rem;
+}
+
+.titleCart{
+    text-align: center;
+}
+
+.sumPriceWrap{
+    display: flex;
+    margin: 0 0 0 10px;
+    align-items: baseline;
+}
+
+.sumPrice{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    margin-left: 10px
+}
+
+
+#checkoutButton{
+    background: rgba(211, 29, 29, 0.92);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: max-content;
+    position: center;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    transition: 0.5s;
+}
+
+#checkoutButton:hover{
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+
+.flexCenter{
+    display: flex;
+    justify-content: center;
 }

@@ -1,19 +1,48 @@
 .wrapper{
     display: flex;
     position: relative;
+    align-items: center;
+    --price-size: 1.3rem
 }
 
 .descriptionWrap{
     display: flex;
     flex-direction: column;
+    padding-right: 10px;
+    width: 200px;
+}
+
+.descriptionWrap *{
+    margin: 0;
 }
 
 .productTitle{
-    font-size: 1.3rem;
+    font-size: calc(var(--price-size) + 0.1rem);
     font-weight: bold;
 }
 
+.delProd{
+    align-self: end;
+    width: 100px;
+    appearance: none;
+    border: 2px solid #eeeeee;
+    border-radius: 1rem;
+    padding: 5px 0;
+    background: #0c426f;
+    color: white;
+    cursor: pointer;
+}
 
+.productPrice{
+    font-size: calc(var(--price-size) - 0.1rem);
+}
+
+.productPriceDetail{
+    color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* Product count */
 .inputNumberWrap{
     position: relative;
 }
@@ -22,7 +51,7 @@
     appearance: none;
     padding: 5px;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: var(--price-size);
     box-sizing: border-box;
     outline: none;
     border: 1px solid #eeeeee;
@@ -37,4 +66,35 @@
 
 .inputNumberWrap input{
     max-width: 4rem;
+    appearance: none;
 }
+
+.inputNumberWrap input::-webkit-outer-spin-button,
+.inputNumberWrap input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+/* end - Product count - end*/
+
+
+/* Size select style*/
+.sizeBlockWrap{
+    position: relative;
+}
+
+.sizeBlockWrap [type="radio"]{
+    position: absolute;
+    left: 0;
+    opacity: 0;
+}
+
+.sizeBlockWrap [type="radio"] + label{
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.sizeBlockWrap [type="radio"]:checked + label{
+    border: 1px solid #61dafb;
+}
+/* end - Size select style - end*/

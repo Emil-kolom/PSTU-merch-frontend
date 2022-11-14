@@ -4,7 +4,7 @@ import '../styles/container.css'
 import logo from '../img/PSTU-logo-300x281.png'
 import {Drawer, IconButton} from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Cart from "./Cart";
 
 const Header = () => {
@@ -22,13 +22,14 @@ const Header = () => {
     }, [])
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
+    const navigate = useNavigate()
+
     return (
         <header>
-            <div className={'header container'}>
+            <div className={'header container'} onClick={()=>{navigate('/')}}>
                 <div id={'title-block'}>
                     <div className={'logoWrap'}>
                         <img className={'logo'} src={logo} alt={'PSTU-logo'}/>
-                        {/*<h1>SHOP</h1>*/}
                     </div>
                     <h3 id={'title'}>PSTU Merch</h3>
                 </div>

@@ -57,24 +57,15 @@ const ListItem = ({onRedirect, onDelete, ...props}) => {
                 <p className={classes.productTitle}>{'Назва товару'}</p>
                 <div className={classes.sizeBlockWrap}>
                     <p>Розмір:</p>
-                    <input type={"radio"} value={'S'} id={'S'} name={'size'}/>
-                    <label htmlFor="S">S</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
-                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
-                    <label htmlFor="SX">SX</label>
+                    <select name={'size'}>
+                        <option value={'XS'}>{'XS'}</option>
+                        <option value={'S'}>{'S'}</option>
+                        <option value={'M'}>{'M'}</option>
+                        <option value={'L'}>{'L'}</option>
+                        <option value={'XL'}>{'XL'}</option>
+                        <option value={'2XL'}>{'2XL'}</option>
+                        <option value={'3XL'}>{'3XL'}</option>
+                    </select>
                 </div>
                 <p>Кількість:</p>
                 <div className={classes.inputNumberWrap}>

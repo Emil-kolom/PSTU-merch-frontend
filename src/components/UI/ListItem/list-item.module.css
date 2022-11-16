@@ -89,32 +89,11 @@
     position: relative;
 }
 
-.sizeBlockWrap [type="radio"]{
-    position: absolute;
-    left: 0;
-    opacity: 0;
-}
-
-.sizeBlockWrap [type="radio"] + label{
-    position: relative;
-    display: inline-block;
+.sizeBlockWrap select{
+    padding: 5px 10px;
+    width: 4rem;
+    user-select: none;
     cursor: pointer;
-    box-sizing: border-box;
-    font-size: var(--price-size);
-    border-radius: 20px;
-    padding: 3px;
-    margin: 5px 10px 5px 0;
-    width: 3rem;
-    text-align: center;
-    border: 1px solid #eeeeee;
 }
 
-.sizeBlockWrap [type="radio"]:checked + label{
-    border: 1px solid #61dafb;
-}
-
-.sizeBlockWrap [type="radio"]:disabled + label{
-    border: 1px solid #282c34;
-    background: rgba(0, 0, 0, 0.35);
-}
 /* end - Size select style - end*/

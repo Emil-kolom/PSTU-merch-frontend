@@ -1,0 +1,25 @@
+.carouselWrap{
+    display: flex;
+    justify-content: center;
+    /*width: 500px;*/
+}
+
+.carousel{
+    width: 500px;
+}
+
+.slide *{
+    text-align: center;
+}
+
+.price{
+    font-weight: bolder;
+    font-size: 1.3rem;
+    padding: 5px 10px;
+    border: #0c426f 1px solid;
+    border-radius: 5px;
+}
+
+.productDescription{
+
+}

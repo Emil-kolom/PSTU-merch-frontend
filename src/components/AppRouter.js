@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import MainPage from "../pages/MainPage";
 import CatalogPage from "../pages/CatalogPage";
+import ProductPage from "../pages/ProductPage";
 
 {/* TODO: add ScrollRestoration https://reactrouter.com/en/6.4.2/start/tutorial#optimistic-ui*/}
 const AppRouter = () => {
@@ -14,6 +15,11 @@ const AppRouter = () => {
 				       path={pathURL}
 				element={<CatalogPage/>}/>
 			})}
+			{/* Product*/}
+			{/*TODO: add error page*/}
+			<Route path={'/product/:id'}
+				   element={<ProductPage/>}
+			/>
 			<Route path="*" element={
 				/* replace - заменит текущую запись в стеке истории вместо добавления новой.*/
 				<Navigate to="/" replace />

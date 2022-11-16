@@ -61,6 +61,20 @@ const ListItem = ({onRedirect, onDelete, ...props}) => {
                     <label htmlFor="S">S</label>
                     <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
                     <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
+                    <input type={"radio"} value={'SX'} id={'SX'} name={'size'}/>
+                    <label htmlFor="SX">SX</label>
                 </div>
                 <p>Кількість:</p>
                 <div className={classes.inputNumberWrap}>

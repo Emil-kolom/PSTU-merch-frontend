@@ -42,7 +42,7 @@
 
 .productPrice{
     margin-top: auto;
-    font-size: calc(var(--price-size) - 0.1rem);
+    font-size: calc(var(--price-size) + 0.1rem);
 }
 
 .productPriceDetail{

@@ -13,7 +13,7 @@ const ProductPage = () => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam distinctio dolorem et eum, expedita explicabo facere ipsam, modi nobis nostrum saepe sed sint soluta totam unde ut vel voluptatibus.',
         inStock: {
             price: [1],
-            clothesSizes: [1]
+            clothesSizes: [1, 2]
         }
     })
     let [currentSize, setCurrentSize] = useState(0)
@@ -50,13 +50,19 @@ const ProductPage = () => {
             }
             {
                 productInfo.inStock.clothesSizes.length > 0 ?
-                    <div>
+                    <div className={'sizeBlockWrap'}>
                         <h3>Size:</h3>
                         {productInfo.inStock.clothesSizes.map((sizeValue, id) => {
-                            return <div>
-                                <input type={'radio'} name={'size'} value={'sizeValue'} id={sizeValue + '-size'} key={id}/>
+                            return <React.Fragment>
+                                <input type={'radio'}
+                                       name={'size'}
+                                       value={sizeValue}
+                                       id={sizeValue + '-size'}
+                                       key={id}
+                                    defaultChecked={id === 0}
+                                />
                                 <label htmlFor={sizeValue + '-size'}>{sizeValue}</label>
-                            </div>
+                            </React.Fragment>
                         })
                         }
                     </div>

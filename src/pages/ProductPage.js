@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import '../styles/container.css'
 import {useParams} from "react-router-dom";
-import Carousel from "nuka-carousel";
-import '../styles/productPage.css'
+import { Swiper, SwiperSlide } from "swiper/react";
 import LeftArrow from "../img/svg/leftArrow";
 import ProductService from "../API/ProductService";
+import '../styles/productPage.css'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 
 const ProductPage = () => {
     let urlParams = useParams()
@@ -27,27 +32,22 @@ const ProductPage = () => {
     return (
         <main className={'container'}>
             <h1>{productInfo.title}</h1>
-            <div className={'carouselWrap'}>
-                <div className={'carousel'}>
-                    <Carousel wrapAround={true}
-                              className={'slide'}
-                              renderCenterLeftControls={({previousDisabled, previousSlide}) => (
-                                  <LeftArrow onClick={previousSlide} disabled={previousDisabled}/>
-                              )}
-                              renderCenterRightControls={({nextDisabled, nextSlide}) => (
-                                  <LeftArrow onClick={nextSlide} disabled={nextDisabled}
-                                             style={{transform: 'scaleX(-1)'}}/>
-                              )}
-                    >
-                        {
-                            imgSetPath.map((imgPath, i) => {
-                                return <img style={{userSelect: 'none', maxHeight: '500px', maxWidth: '500px'}} src={process.env.PUBLIC_URL + imgPath}
-                                            alt={imgPath} key={i}/>
-                            })
-                        }
-                    </Carousel>
-                </div>
-            </div>
+           <Swiper
+            // install Swiper modules
+            modules={[Navigation, Pagination, A11y]}
+            slidesPerView={1}
+            centeredSlides={true}
+            loop={true}
+            navigation
+            pagination={{ clickable: true }}
+            >
+               {
+               imgSetPath.map((imgPath, i) => {
+                   return <SwiperSlide key={i}><img src={imgPath}
+                               alt={'picture-'+i}/>
+                   </SwiperSlide>
+               })}
+        </Swiper>
             {productInfo.inStock.clothesSizes.length > 0 ?
                 <span className={'price'}>{productInfo.inStock.price[currentSize] + ' Грн'}</span>
                 :

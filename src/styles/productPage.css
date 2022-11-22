@@ -6,10 +6,16 @@
 
 .carousel{
     width: 500px;
+    height: 500px;
+}
+
+.slide{
+    max-width: 90vw;
 }
 
 .slide *{
     text-align: center;
+
 }
 
 .price{

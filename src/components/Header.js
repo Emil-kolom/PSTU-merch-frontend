@@ -26,8 +26,8 @@ const Header = () => {
 
     return (
         <header>
-            <div className={'header container'} onClick={()=>{navigate('/')}}>
-                <div id={'title-block'}>
+            <div className={'header container'}>
+                <div id={'title-block'} onClick={()=>{navigate('/')}}>
                     <div className={'logoWrap'}>
                         <img className={'logo'} src={logo} alt={'PSTU-logo'}/>
                     </div>

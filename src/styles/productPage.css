@@ -67,6 +67,7 @@
     user-select: none;
     box-sizing: border-box;
     width: 500px;
+    max-height: 500px;
     padding-top: 0px;
     padding-bottom: 0px;
     border-radius: 40px;
@@ -76,6 +77,7 @@
 @media (max-width: 768px) {
     .swiper {
         width: 90vw;
+        max-height: 90vh;
     }
 }
 
@@ -101,3 +103,27 @@
 }
 
 /* end - swiper - end*/
+
+.priceBlock{
+    display: flex;
+    flex-direction: row;
+}
+
+.buyButton{
+    background: rgba(211, 29, 29, 0.92);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: max-content;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    transition: 0.5s;
+    margin-left: 50px;
+    align-self: center;
+    justify-self: center;
+}
+
+.buyButton:hover{
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}

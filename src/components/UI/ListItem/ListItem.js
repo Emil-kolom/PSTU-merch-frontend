@@ -4,7 +4,7 @@ import ImgLink from "../ImgLink/ImgLink";
 
 const currentNumberReg = new RegExp('^[1-9]?\\d{0,2}$');
 
-const ListItem = ({onRedirect, onDelete, ...props}) => {
+const ListItem = ({onRedirect, onDelete, product}) => {
     /* TODO: replace it on props*/
     let [productCount, setProductCount] = useState(1)
     let [inputText, setInputText] = useState('1')

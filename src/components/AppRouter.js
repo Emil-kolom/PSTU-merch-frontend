@@ -16,7 +16,6 @@ const AppRouter = () => {
 				element={<CatalogPage/>}/>
 			})}
 			{/* Product*/}
-			{/*TODO: add error page*/}
 			<Route path={'/product/:id'}
 				   element={<ProductPage/>}
 			/>

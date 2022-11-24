@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '../styles/container.css'
-import {useParams} from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {redirect, useNavigate, useParams} from "react-router-dom";
+import {Swiper, SwiperSlide} from "swiper/react";
 import LeftArrow from "../img/svg/leftArrow";
 import ProductService from "../API/ProductService";
 import '../styles/productPage.css'
@@ -10,72 +10,96 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
+import {useFetch} from "../hooks/useFetch";
+import {OrderContext} from "../context/OrderContext";
 
 const ProductPage = () => {
     let urlParams = useParams()
     let [imgSetPath, setImgSetPath] = useState(['/img/caps/1.png', '/logo192.png'])
-    let [productInfo, setProductInfo] = useState({
-        title: 'Test Title',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam distinctio dolorem et eum, expedita explicabo facere ipsam, modi nobis nostrum saepe sed sint soluta totam unde ut vel voluptatibus.',
-        inStock: {
-            price: [1],
-            clothesSizes: [1, 2]
-        }
-    })
+    let [productInfo, setProductInfo] = useState()
     let [currentSize, setCurrentSize] = useState(0)
+    let [isLoading, setLoading] = useState(false)
+    let navigate = useNavigate()
 
-    useEffect(()=>{
-        // setProductInfo(ProductService.getProduct(2))
-        console.log(` serv ${ProductService.getProduct(2)}`)
-    },[])
+    const [fetchProductById] = useFetch(async (id) => {
+        const response = await ProductService.getProduct(urlParams.id);
+        console.log(response)
+        setProductInfo(response.data)
+        setLoading(true)
+    }, navigate)
+
+    useEffect(() => {
+        fetchProductById()
+    }, [])
+
+
+    const [orders, setOrders] = useContext(OrderContext)
+    function onAddToCart() {
+        let [item] = orders.filter((i)=>i.id === productInfo.id &&
+            i.sizeToBuy === productInfo.warehouses[currentSize].size)
+        if(item){
+            item.countToBuy += 1
+        }else {
+            item = productInfo;
+            item.countToBuy = 1
+            item.sizeToBuy = productInfo.warehouses[currentSize].size
+            item.price = productInfo.warehouses[currentSize].price
+            setOrders([...orders, productInfo])
+        }
+    }
 
     return (
-        <main className={'container'}>
-            <h1>{productInfo.title}</h1>
-           <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, A11y]}
-            slidesPerView={1}
-            centeredSlides={true}
-            loop={true}
-            navigation
-            pagination={{ clickable: true }}
-            >
-               {
-               imgSetPath.map((imgPath, i) => {
-                   return <SwiperSlide key={i}><img src={imgPath}
-                               alt={'picture-'+i}/>
-                   </SwiperSlide>
-               })}
-        </Swiper>
-            {productInfo.inStock.clothesSizes.length > 0 ?
-                <span className={'price'}>{productInfo.inStock.price[currentSize] + ' Грн'}</span>
-                :
-                <span>Товару немає в наявності</span>
-            }
-            {
-                productInfo.inStock.clothesSizes.length > 0 ?
-                    <div className={'sizeBlockWrap'}>
-                        <h3>Size:</h3>
-                        {productInfo.inStock.clothesSizes.map((sizeValue, id) => {
-                            return <React.Fragment>
-                                <input type={'radio'}
-                                       name={'size'}
-                                       value={sizeValue}
-                                       id={sizeValue + '-size'}
-                                       key={id}
-                                    defaultChecked={id === 0}
-                                />
-                                <label htmlFor={sizeValue + '-size'}>{sizeValue}</label>
-                            </React.Fragment>
-                        })
-                        }
+        isLoading ?
+            <main className={'container'}>
+                <h1>{productInfo.title}</h1>
+                <Swiper
+                    // install Swiper modules
+                    modules={[Navigation, Pagination, A11y]}
+                    slidesPerView={1}
+                    centeredSlides={true}
+                    loop={true}
+                    navigation
+                    pagination={{clickable: true}}
+                >
+                    {
+                        imgSetPath.map((imgPath, i) => {
+                            return <SwiperSlide key={i}><img src={imgPath}
+                                                             alt={'picture-' + i}/>
+                            </SwiperSlide>
+                        })}
+                </Swiper>
+                {productInfo.warehouses.length > 0 ?
+                    <div className={'priceBlock'}>
+                        <span className={'price'}>{productInfo.warehouses[currentSize].price + ' Грн'}</span>
+                        <button className={'buyButton'} onClick={onAddToCart}>Купити!</button>
                     </div>
                     :
-                    null
-            }
-            <p className={'productDescription'}>{productInfo.description}</p>
-        </main>
+                    <span>Товару немає в наявності</span>
+                }
+                {
+                    productInfo.warehouses.length > 0 ?
+                        <div className={'sizeBlockWrap'}>
+                            <h3>Size:</h3>
+                            {productInfo.warehouses.map((inStoke, id) => {
+                                return <React.Fragment key={id}>
+                                    <input type={'radio'}
+                                           name={'size'}
+                                           value={inStoke.size}
+                                           id={inStoke.size + '-size'}
+                                           defaultChecked={id === 0}
+                                    />
+                                    <label htmlFor={inStoke.size + '-size'}
+                                           onClick={() => setCurrentSize(id)}>{inStoke.size}</label>
+                                </React.Fragment>
+                            })
+                            }
+                        </div>
+                        :
+                        null
+                }
+                <p className={'productDescription'}>{productInfo.description}</p>
+            </main>
+            : null
     );
 };
 

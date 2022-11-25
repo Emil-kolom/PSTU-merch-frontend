@@ -1,23 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./list-item.module.css";
 import ImgLink from "../ImgLink/ImgLink";
 
 const currentNumberReg = new RegExp('^[1-9]?\\d{0,2}$');
 
 const ListItem = ({onRedirect, onDelete, product}) => {
-    /* TODO: replace it on props*/
-    let [productCount, setProductCount] = useState(1)
-    let [inputText, setInputText] = useState('1')
+    const [productCount, setProductCount] = useState(product.countToBuy)
+    const [inputText, setInputText] = useState(`${product.countToBuy}`)
+
+    useEffect(()=>{
+        setInputText(`${productCount}`)
+        product.countToBuy = productCount
+    }, [productCount])
+
     const decrement = () => {
         if (productCount > 1) {
-            setProductCount(--productCount)
-            setInputText(`${productCount}`)
+            setProductCount(productCount - 1)
         }
     }
     const increment = () => {
         if (productCount < 1000) {
-            setProductCount(++productCount)
-            setInputText(`${productCount}`)
+            setProductCount(productCount + 1)
         }
     }
 
@@ -33,16 +36,13 @@ const ListItem = ({onRedirect, onDelete, product}) => {
         console.log(num)
         if (num) {
             setProductCount(num)
-            setInputText(`${num}`)
-        } else {
-            setInputText(`${productCount}`)
         }
     }
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.productImgWrap}>
-                <ImgLink page={'/test'}
+                <ImgLink page={'/product/'+product.id}
                          onClick={onRedirect}
                          style={{
                              minWidth: '160px',
@@ -54,17 +54,15 @@ const ListItem = ({onRedirect, onDelete, product}) => {
                 >Прибрати</button>
             </div>
             <div className={classes.descriptionWrap}>
-                <p className={classes.productTitle}>{'Назва товару'}</p>
+                <p className={classes.productTitle}>{product.name}</p>
                 <div className={classes.sizeBlockWrap}>
                     <p>Розмір:</p>
                     <select name={'size'}>
-                        <option value={'XS'}>{'XS'}</option>
-                        <option value={'S'}>{'S'}</option>
-                        <option value={'M'}>{'M'}</option>
-                        <option value={'L'}>{'L'}</option>
-                        <option value={'XL'}>{'XL'}</option>
-                        <option value={'2XL'}>{'2XL'}</option>
-                        <option value={'3XL'}>{'3XL'}</option>
+                        {
+                            product.warehouses.map((item, ind)=>{
+                                return <option value={item.size} key={ind}>{item.size}</option>
+                            })
+                        }
                     </select>
                 </div>
                 <p>Кількість:</p>
@@ -77,8 +75,9 @@ const ListItem = ({onRedirect, onDelete, product}) => {
                     />
                     <button onClick={increment}>+</button>
                 </div>
-                <p className={classes.productPrice}>{'ціна'}</p>
-                <p className={classes.productPriceDetail}>{`початкова ціна * ${productCount} = ціна`}</p>
+                <p className={classes.productPrice}>{product.price * productCount + " Грн"}</p>
+                <p className={classes.productPriceDetail}>{`${product.price} * ${productCount} =
+                 ${product.price * productCount} Грн`}</p>
             </div>
         </div>
     );

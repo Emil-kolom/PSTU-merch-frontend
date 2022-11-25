@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {Drawer} from "@mui/material";
 import ListItem from "./UI/ListItem/ListItem";
 import LeftArrow from "../img/svg/leftArrow";
@@ -6,7 +6,7 @@ import '../styles/cart.css';
 import {OrderContext} from "../context/OrderContext";
 
 
-const Cart = ({isDrawerOpen, setIsDrawerOpen, ...props}) => {
+const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
 
     const [ orders,setOrders ] = useContext(OrderContext)
 
@@ -48,7 +48,7 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen, ...props}) => {
                     <p>Загалом:</p>
                     <p className={'sumPrice'}>{orders.reduce((sum, product)=>{
                         return sum + product.countToBuy * product.price
-                    },0)}</p>
+                    },0) + " Грн"}</p>
                 </div>
 
                 <div className={'flexCenter'}>

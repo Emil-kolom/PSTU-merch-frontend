@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import ProductService from "../API/ProductService";
-import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from 'react';
 
 export const useFetch = (callback, errorNav) => {
     let [status, setStatus] = useState()

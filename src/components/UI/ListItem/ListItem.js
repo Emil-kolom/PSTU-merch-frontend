@@ -4,13 +4,23 @@ import ImgLink from "../ImgLink/ImgLink";
 
 const currentNumberReg = new RegExp('^[1-9]?\\d{0,2}$');
 
-const ListItem = ({onRedirect, onDelete, product}) => {
-    const [productCount, setProductCount] = useState(product.countToBuy)
+/**
+ *
+ * @param onRedirect
+ * @param onDelete
+ * @param product
+ * @param quantityState - количество товара, которое обновляется из вне
+ * @return {JSX.Element}
+ * @constructor
+ */
+const ListItem = ({onRedirect, onDelete, product, quantityState}) => {
+    let [quantity, setQuantity] = quantityState
+    const [productCount, setProductCount] = useState(quantity)
     const [inputText, setInputText] = useState(`${product.countToBuy}`)
 
     useEffect(()=>{
         setInputText(`${productCount}`)
-        product.countToBuy = productCount
+        setQuantity(quantity)
     }, [productCount])
 
     const decrement = () => {
@@ -60,7 +70,8 @@ const ListItem = ({onRedirect, onDelete, product}) => {
                     <select name={'size'}>
                         {
                             product.warehouses.map((item, ind)=>{
-                                return <option value={item.size} key={ind}>{item.size}</option>
+                                return <option value={item.size}
+                                               key={ind}>{item.size}</option>
                             })
                         }
                     </select>

@@ -1,20 +1,21 @@
 import React, {useContext, useEffect, useState} from 'react';
 import '../styles/container.css'
-import {redirect, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Swiper, SwiperSlide} from "swiper/react";
-import LeftArrow from "../img/svg/leftArrow";
 import ProductService from "../API/ProductService";
 import '../styles/productPage.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
+import {A11y, Navigation, Pagination} from "swiper";
 import {useFetch} from "../hooks/useFetch";
 import {OrderContext} from "../context/OrderContext";
+import CartService from "../service/OrderService";
 
 const ProductPage = () => {
     let urlParams = useParams()
+    //TODO: get IMG array from server
     let [imgSetPath, setImgSetPath] = useState(['/img/caps/1.png', '/logo192.png'])
     let [productInfo, setProductInfo] = useState()
     let [currentSize, setCurrentSize] = useState(0)
@@ -23,7 +24,6 @@ const ProductPage = () => {
 
     const [fetchProductById] = useFetch(async (id) => {
         const response = await ProductService.getProduct(urlParams.id);
-        console.log(response)
         setProductInfo(response.data)
         setLoading(true)
     }, navigate)
@@ -33,19 +33,10 @@ const ProductPage = () => {
     }, [])
 
 
-    const [orders, setOrders] = useContext(OrderContext)
+    const orders = useContext(OrderContext)
     function onAddToCart() {
-        let [item] = orders.filter((i)=>i.id === productInfo.id &&
-            i.sizeToBuy === productInfo.warehouses[currentSize].size)
-        if(item){
-            item.countToBuy += 1
-        }else {
-            item = productInfo;
-            item.countToBuy = 1
-            item.sizeToBuy = productInfo.warehouses[currentSize].size
-            item.price = productInfo.warehouses[currentSize].price
-            setOrders([...orders, productInfo])
-        }
+        const ac = CartService.onAddToCart
+        ac(orders, productInfo, currentSize)
     }
 
     return (

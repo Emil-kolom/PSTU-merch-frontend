@@ -4,11 +4,12 @@ import ListItem from "./UI/ListItem/ListItem";
 import LeftArrow from "../img/svg/leftArrow";
 import '../styles/cart.css';
 import {OrderContext} from "../context/OrderContext";
+import {Order, OrdersService} from "../service/OrdersService";
 
 
 const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
 
-    const [ orders,setOrders ] = useContext(OrderContext)
+    const [orders, setOrders] = useContext(OrderContext)
 
     return (
         <OrderContext.Provider value={orders}>
@@ -30,25 +31,36 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
                 }
                 {/* Картка з товаром*/}
                 {
-                    orders.map((productInfo, index) => {
-                        return <ListItem key={productInfo.id}
+                    orders.map((order, index) => {
+                        return <ListItem key={`${order.id} - ${order.size}`}
                                          onRedirect={() => {
                                              setIsDrawerOpen(false)
                                          }}
                                          onDelete={() => {
-                                             setOrders(orders.filter((item, ind) => ind !== index))
-                                             console.log(orders)
+                                             OrdersService.onDeleteByInd([orders,setOrders],index)
                                          }}
-                                         product={productInfo}
+                                         onChangeQuantity={(newQuantity) => {
+                                             OrdersService.updOrdersWithIndx(
+                                                 [orders, setOrders],
+                                                 Order.updOrderVal('quantity', newQuantity, order),
+                                                 index)
+                                         }}
+                                         onChangeSize={(newSize) => {
+                                             OrdersService.onSizeChange([orders, setOrders],
+                                                 order,
+                                                 newSize,
+                                                 index)
+                                         }}
+                                         order={order}
                         />
                     })
                 }
 
                 <div className={'sumPriceWrap'}>
                     <p>Загалом:</p>
-                    <p className={'sumPrice'}>{orders.reduce((sum, product)=>{
-                        return sum + product.countToBuy * product.price
-                    },0) + " Грн"}</p>
+                    <p className={'sumPrice'}>{orders.reduce((sum, order) => {
+                        return sum + order.quantity * order.price
+                    }, 0) + " Грн"}</p>
                 </div>
 
                 <div className={'flexCenter'}>

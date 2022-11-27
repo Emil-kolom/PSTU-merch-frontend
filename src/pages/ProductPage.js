@@ -12,6 +12,7 @@ import 'swiper/css/scrollbar';
 import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 import {useFetch} from "../hooks/useFetch";
 import {OrderContext} from "../context/OrderContext";
+import {Order, OrdersService} from "../service/OrdersService";
 
 const ProductPage = () => {
     let urlParams = useParams()
@@ -23,7 +24,6 @@ const ProductPage = () => {
 
     const [fetchProductById] = useFetch(async (id) => {
         const response = await ProductService.getProduct(urlParams.id);
-        console.log(response)
         setProductInfo(response.data)
         setLoading(true)
     }, navigate)
@@ -33,19 +33,10 @@ const ProductPage = () => {
     }, [])
 
 
-    const [orders, setOrders] = useContext(OrderContext)
+    const  orderContext = useContext(OrderContext)
     function onAddToCart() {
-        let [item] = orders.filter((i)=>i.id === productInfo.id &&
-            i.sizeToBuy === productInfo.warehouses[currentSize].size)
-        if(item){
-            item.countToBuy += 1
-        }else {
-            item = productInfo;
-            item.countToBuy = 1
-            item.sizeToBuy = productInfo.warehouses[currentSize].size
-            item.price = productInfo.warehouses[currentSize].price
-            setOrders([...orders, productInfo])
-        }
+        let order = new Order(productInfo, currentSize)
+        OrdersService.onAddToCart(orderContext, order)
     }
 
     return (

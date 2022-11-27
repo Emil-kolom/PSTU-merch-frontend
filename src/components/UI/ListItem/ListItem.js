@@ -4,14 +4,19 @@ import ImgLink from "../ImgLink/ImgLink";
 
 const currentNumberReg = new RegExp('^[1-9]?\\d{0,2}$');
 
-const ListItem = ({onRedirect, onDelete, product}) => {
-    const [productCount, setProductCount] = useState(product.countToBuy)
-    const [inputText, setInputText] = useState(`${product.countToBuy}`)
+const ListItem = ({onRedirect, onDelete, onChangeQuantity, onChangeSize, order}) => {
+    const [productCount, setProductCount] = useState(order.quantity)
+    const [inputText, setInputText] = useState(`${order.quantity}`)
+    const [curSizeSelect, setCurSizeSelect ] = useState(order.size)
 
     useEffect(()=>{
         setInputText(`${productCount}`)
-        product.countToBuy = productCount
+        onChangeQuantity(productCount)
     }, [productCount])
+
+    useEffect(()=>{
+        setProductCount(order.quantity)
+    },[order])
 
     const decrement = () => {
         if (productCount > 1) {
@@ -33,16 +38,17 @@ const ListItem = ({onRedirect, onDelete, product}) => {
 
     function changePrice(e) {
         let num = parseInt(e.target.value)
-        console.log(num)
         if (num) {
             setProductCount(num)
+        }else {
+            setInputText(`${productCount}`)
         }
     }
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.productImgWrap}>
-                <ImgLink page={'/product/'+product.id}
+                <ImgLink page={'/product/'+order.id}
                          onClick={onRedirect}
                          style={{
                              minWidth: '160px',
@@ -54,12 +60,17 @@ const ListItem = ({onRedirect, onDelete, product}) => {
                 >Прибрати</button>
             </div>
             <div className={classes.descriptionWrap}>
-                <p className={classes.productTitle}>{product.name}</p>
+                <p className={classes.productTitle}>{order.name}</p>
                 <div className={classes.sizeBlockWrap}>
                     <p>Розмір:</p>
-                    <select name={'size'}>
+                    <select name={'size'}
+                            value={curSizeSelect}
+                            onChange={(e)=>{
+                                setCurSizeSelect(e.target.value)
+                                onChangeSize(e.target.value)
+                    }}>
                         {
-                            product.warehouses.map((item, ind)=>{
+                            order.inStokeArr.map((item, ind)=>{
                                 return <option value={item.size} key={ind}>{item.size}</option>
                             })
                         }
@@ -75,9 +86,9 @@ const ListItem = ({onRedirect, onDelete, product}) => {
                     />
                     <button onClick={increment}>+</button>
                 </div>
-                <p className={classes.productPrice}>{product.price * productCount + " Грн"}</p>
-                <p className={classes.productPriceDetail}>{`${product.price} * ${productCount} =
-                 ${product.price * productCount} Грн`}</p>
+                <p className={classes.productPrice}>{order.price * order.quantity + " Грн"}</p>
+                <p className={classes.productPriceDetail}>{`${order.price} * ${order.quantity} =
+                 ${order.price * order.quantity} Грн`}</p>
             </div>
         </div>
     );

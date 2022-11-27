@@ -1,15 +1,22 @@
 import {createContext, useEffect, useState} from "react";
+import {OrdersService} from "../service/OrdersService";
 
 export const OrderContext = createContext();
 
 export const OrderContextProvider = (props) => {
-    let initOrders = JSON.parse(localStorage.getItem('orders'))
-    if(!initOrders)
-        initOrders = []
-    const [orders, setOrders] = useState(initOrders);
+    const [orders, setOrders] = useState([]);
 
     useEffect(()=>{
-        console.log(JSON.stringify(orders))
+        let initOrders = JSON.parse(localStorage.getItem('orders'))
+        if(!initOrders)
+            initOrders = []
+        else{
+            initOrders = OrdersService.getNewProductInfo(initOrders)
+        }
+        setOrders(initOrders)
+    },[])
+
+    useEffect(()=>{
         localStorage.setItem('orders', JSON.stringify(orders))
     },[orders])
 

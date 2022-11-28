@@ -63,7 +63,7 @@
 /* end - size block - end*/
 
 /* Swiper */
-.swiper {
+.swiperOnPage {
     user-select: none;
     box-sizing: border-box;
     width: 500px;
@@ -75,7 +75,7 @@
 }
 
 @media (max-width: 768px) {
-    .swiper {
+    .swiperOnPage {
         width: 90vw;
         max-height: 90vh;
     }
@@ -85,7 +85,7 @@
     align-items: center;
 }
 
-.swiper-slide {
+.swiper-slideOnPage {
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -96,7 +96,7 @@
     align-items: center;
 }
 
-.swiper-slide img {
+.swiper-slideOnPage img {
     display: block;
     width: 100%;
     object-fit: cover;

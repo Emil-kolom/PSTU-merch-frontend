@@ -1,0 +1,17 @@
+.navLink{
+    color: whitesmoke;
+    margin: 5px 20px;
+    display: block;
+    padding: 5px;
+    background: rgba(211, 29, 29, 0.92);
+    border-radius: 5px;
+    /*border: solid rgba(211, 29, 29, 0.92);*/
+    align-self: center;
+    text-decoration: none;
+    user-select: none;
+    transition: 0.3s;
+}
+
+.navLink:hover {
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+}

@@ -4,7 +4,8 @@ import productService from "../API/ProductService";
 
 export class OrdersService {
     static getNewProductInfo(orders){
-        let res = orders.map((order)=>{
+        let newOrder = []
+        orders.map((order)=>{
             const getData = async ()=> {
                 const response = await ProductService.getProduct(order.id)
                 let productInfo = response.data
@@ -15,13 +16,12 @@ export class OrdersService {
                     }
                 })
                 if (newCurSizeInd > -1) {
-                    return new Order(productInfo, newCurSizeInd)
+                    newOrder.push(new Order(productInfo, newCurSizeInd))
                 }
             }
-            return  getData()
+            getData()
         })
-        console.log(res)
-        return res
+        return newOrder
     }
 
     static onAddToCart(orderContext, order){

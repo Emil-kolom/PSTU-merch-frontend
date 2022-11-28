@@ -1,0 +1,19 @@
+.bigRedButton{
+    background: rgba(211, 29, 29, 0.92);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: max-content;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    transition: 0.5s;
+    margin-left: 50px;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.bigRedButton:hover{
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}

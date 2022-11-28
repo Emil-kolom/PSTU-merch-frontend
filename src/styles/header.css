@@ -4,7 +4,7 @@
     display: flex;
     color: whitesmoke;
     max-height: 5em;
-    justify-content: space-between;
+    justify-content: end;
     user-select: none;
 }
 
@@ -34,6 +34,7 @@
 .header #title-block{
     display: flex;
     cursor: pointer;
+    margin-right: auto;
 }
 
 #title-block #title{
@@ -49,8 +50,6 @@
     max-height: 120px;
 }
 
-.header nav{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.navButton{
+    margin-right: 25px;
 }

@@ -51,10 +51,11 @@ const ProductPage = () => {
                     loop={true}
                     navigation
                     pagination={{clickable: true}}
+                    className={'swiperOnPage swiper'}
                 >
                     {
                         imgSetPath.map((imgPath, i) => {
-                            return <SwiperSlide key={i}><img src={imgPath}
+                            return <SwiperSlide className={'swiper-slideOnPage'} key={i}><img src={imgPath}
                                                              alt={'picture-' + i}/>
                             </SwiperSlide>
                         })}

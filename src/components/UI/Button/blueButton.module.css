@@ -1,0 +1,21 @@
+.blueButton{
+    border: 0;
+    width: max-content;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    transition: 0.5s;
+    /*margin-right: 50px;*/
+    align-self: end;
+    justify-self: center;
+    cursor: pointer;
+    background: #0c426f;
+    margin: 5px 25px 5px 0;
+    color: white;
+}
+
+
+
+.blueButton:hover{
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}

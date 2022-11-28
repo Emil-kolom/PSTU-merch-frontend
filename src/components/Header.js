@@ -2,10 +2,19 @@ import React, {useEffect, useState} from 'react';
 import '../styles/header.css'
 import '../styles/container.css'
 import logo from '../img/PSTU-logo-300x281.png'
-import {Drawer, IconButton} from "@mui/material";
+import {Button, Drawer, IconButton} from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Cart from "./Cart";
+import NavLink from "./UI/NavLink/NavLink";
+import {A11y, Autoplay, Navigation, Pagination} from "swiper";
+import {Swiper, SwiperSlide} from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import RedButton from "./UI/Button/RedButton";
+import BlueButton from "./UI/Button/BlueButton";
+import NavListDrawer from "./navListDrawer";
 
 const Header = () => {
     let [navList, setNavList] = useState([])
@@ -21,23 +30,25 @@ const Header = () => {
             {name: 'link 3', link: '/cot3', id: 3}])
     }, [])
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    const [isTopDrawerOpen, setIsTopDrawerOpen] = useState(false)
 
     const navigate = useNavigate()
 
     return (
         <header>
             <div className={'header container'}>
-                <div id={'title-block'} onClick={()=>{navigate('/')}}>
+                <div id={'title-block'} onClick={() => {
+                    navigate('/')
+                }}>
                     <div className={'logoWrap'}>
                         <img className={'logo'} src={logo} alt={'PSTU-logo'}/>
                     </div>
                     <h3 id={'title'}>PSTU Merch</h3>
                 </div>
-                <nav>
-                    {navList.map(nav_link => {
-                        return <Link key={nav_link.id} to={nav_link.link}>{nav_link.name}</Link>
-                    })}
-                </nav>
+                <RedButton appendClass={'navButton'}  onClick={() => {
+                    setIsTopDrawerOpen(true)
+                }}>Навігація ≡</RedButton>
+                <NavListDrawer setIsDrawerOpen={setIsTopDrawerOpen} isDrawerOpen={isTopDrawerOpen} navList={navList}/>
                 {/*Корзина*/}
                 <IconButton
                     onClick={() => setIsDrawerOpen(true)}>

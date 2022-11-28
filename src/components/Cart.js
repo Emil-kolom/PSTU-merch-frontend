@@ -12,7 +12,6 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
     const [orders, setOrders] = useContext(OrderContext)
 
     return (
-        <OrderContext.Provider value={orders}>
             <Drawer
                 anchor={"right"}
                 open={isDrawerOpen}
@@ -68,7 +67,6 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
                 </div>
 
             </Drawer>
-        </OrderContext.Provider>
     );
 };
 

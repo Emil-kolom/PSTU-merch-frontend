@@ -22,35 +22,9 @@ const NavListDrawer = ({isDrawerOpen, setIsDrawerOpen, navList}) => {
             {/* Лист посилань*/}
             {
                 navList.map(nav_link => {
-                    return  <NavLink key={nav_link.id} to={nav_link.link}>{nav_link.name}</NavLink>
+                    return  <NavLink style={{width: '15em'}} key={nav_link.id} to={nav_link.url}>{nav_link.name}</NavLink>
                 })
             }
-        </Drawer>)
-}
-            {/*{*/}
-            {/*    orders.map((order, index) => {*/}
-            {/*        return <ListItem key={`${order.id} - ${order.size}`}*/}
-            {/*                         onRedirect={() => {*/}
-            {/*                             setIsDrawerOpen(false)*/}
-            {/*                         }}*/}
-            {/*                         onDelete={() => {*/}
-            {/*                             OrdersService.onDeleteByInd([orders,setOrders],index)*/}
-            {/*                         }}*/}
-            {/*                         onChangeQuantity={(newQuantity) => {*/}
-            {/*                             OrdersService.updOrdersWithIndx(*/}
-            {/*                                 [orders, setOrders],*/}
-            {/*                                 Order.updOrderVal('quantity', newQuantity, order),*/}
-            {/*                                 index)*/}
-            {/*                         }}*/}
-            {/*                         onChangeSize={(newSize) => {*/}
-            {/*                             OrdersService.onSizeChange([orders, setOrders],*/}
-            {/*                                 order,*/}
-            {/*                                 newSize,*/}
-            {/*                                 index)*/}
-            {/*                         }}*/}
-            {/*                         order={order}*/}
-            {/*        />*/}
-            {/*    })*/}
-            {/*}*/}
+        </Drawer>)}
 
-            export default NavListDrawer;
+export default NavListDrawer;

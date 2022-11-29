@@ -15,20 +15,21 @@ import "swiper/css/pagination";
 import RedButton from "./UI/Button/RedButton";
 import BlueButton from "./UI/Button/BlueButton";
 import NavListDrawer from "./navListDrawer";
+import {useFetch} from "../hooks/useFetch";
+import CategoryService from "../API/CategoryService";
 
 const Header = () => {
     let [navList, setNavList] = useState([])
-    useEffect(() => {
-        //GET from fetch
-        setNavList([
-            {name: 'link 1 TEST', link: '/cot', id: 1},
-            {name: 'link 2', link: '/cot', id: 2},
-            {name: 'link 2', link: '/cot', id: 5},
-            {name: 'link 2', link: '/cot', id: 6},
-            {name: 'link 2', link: '/cot', id: 7},
-            {name: 'link 2', link: '/cot', id: 8},
-            {name: 'link 3', link: '/cot3', id: 3}])
-    }, [])
+
+    const [fetchCategory] = useFetch(async () => {
+        const response = await CategoryService.getCategory();
+        setNavList(response.data)
+    })
+
+    useEffect(()=>{
+        fetchCategory()
+    },[])
+
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [isTopDrawerOpen, setIsTopDrawerOpen] = useState(false)
 

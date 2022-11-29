@@ -28,6 +28,9 @@
     padding: 3px 12px 8px 12px;
     margin-bottom: 10px;
     transition: 0.3s;
+    max-width: 12rem;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 .title:hover{

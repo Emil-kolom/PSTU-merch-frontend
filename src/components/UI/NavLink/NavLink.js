@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 import {useMeasure} from "react-use";
 import classes from './nav-link.module.css'
 
-const NavLink = ({to,children}) => {
+const NavLink = ({to,children, ...props}) => {
     return (
-        <Link className={classes.navLink} to={to}>
+        <Link {...props} className={classes.navLink} to={to}>
             {children}
         </Link>
     );

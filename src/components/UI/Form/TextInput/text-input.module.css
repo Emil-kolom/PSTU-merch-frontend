@@ -1,0 +1,21 @@
+.textInputLabel{
+    display: grid;
+    grid-template-columns: 200px 3fr 1fr;
+    grid-column-gap: 5px;
+    padding: 5px 0;
+}
+
+@media (max-width: 936px) {
+    .textInputLabel{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.textInput{
+    appearance: none;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #eeeeee;
+    margin-top: 3px;
+}

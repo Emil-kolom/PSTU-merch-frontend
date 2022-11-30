@@ -1,0 +1,4 @@
+.orderPlacementForm{
+    display: flex;
+    flex-direction: row;
+}

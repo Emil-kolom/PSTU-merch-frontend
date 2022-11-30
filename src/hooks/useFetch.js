@@ -20,7 +20,8 @@ export const useFetch = (callback, errorNav) => {
 
     useEffect(() => {
         if (status && status !== 200) {
-            errorNav('/')
+            if(typeof errorNav !== 'undefined')
+                errorNav('/')
         }
     }, [status])
 

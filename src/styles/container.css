@@ -8,4 +8,5 @@
 
 main{
     margin-top: var(--header-height-large);
+    margin-bottom: 5px;
 }

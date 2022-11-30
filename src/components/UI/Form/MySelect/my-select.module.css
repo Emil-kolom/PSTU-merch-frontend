@@ -1,0 +1,19 @@
+.labelBox{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-column-gap: 5px;
+    padding: 5px 0;
+}
+
+@media (max-width: 936px) {
+    .labelBox{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.mySelect{
+    padding: 5px;
+    border: 1px solid #eeeeee;
+    margin-top: 3px;
+}

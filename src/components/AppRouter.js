@@ -5,6 +5,7 @@ import CatalogPage from "../pages/CatalogPage";
 import ProductPage from "../pages/ProductPage";
 import {useFetch} from "../hooks/useFetch";
 import CategoryService from "../API/CategoryService";
+import OrderPlacementPage from "../pages/orderPlacementPage";
 
 {/* TODO: add ScrollRestoration https://reactrouter.com/en/6.4.2/start/tutorial#optimistic-ui*/}
 const AppRouter = () => {
@@ -29,6 +30,10 @@ const AppRouter = () => {
 			{/* Product*/}
 			<Route path={'/product/:id'}
 				   element={<ProductPage/>}
+			/>
+			{/* Order Placement*/}
+			<Route path={'/order-placement'}
+				   element={<OrderPlacementPage/>}
 			/>
 			<Route path="*" element={
 				/* replace - заменит текущую запись в стеке истории вместо добавления новой.*/

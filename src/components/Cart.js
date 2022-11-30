@@ -5,11 +5,13 @@ import LeftArrow from "../img/svg/leftArrow";
 import '../styles/cart.css';
 import {OrderContext} from "../context/OrderContext";
 import {Order, OrdersService} from "../service/OrdersService";
+import {useNavigate} from "react-router-dom";
 
 
 const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
 
     const [orders, setOrders] = useContext(OrderContext)
+    const navigate = useNavigate()
 
     return (
             <Drawer
@@ -63,7 +65,11 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
                 </div>
 
                 <div className={'flexCenter'}>
-                    <button id={'checkoutButton'}>Перейти до оформлення!</button>
+                    <button id={'checkoutButton'}
+                            onClick={()=>{
+                                navigate('/order-placement')
+                            }}
+                    >Перейти до оформлення!</button>
                 </div>
 
             </Drawer>

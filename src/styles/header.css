@@ -50,6 +50,20 @@
     max-height: 120px;
 }
 
+@media (max-width: 470px) {
+    .header .logoWrap .logo{
+        display: none;
+    }
+}
+
+
 .navButton{
+    margin-left: 5px;
     margin-right: 25px;
+}
+
+@media (max-width: 470px) {
+    .navButton{
+        margin-right: 0;
+    }
 }

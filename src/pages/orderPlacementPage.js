@@ -5,6 +5,7 @@ import TextInput from "../components/UI/Form/TextInput/TextInput";
 import RedButton from "../components/UI/Button/RedButton";
 import {Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select} from "@mui/material";
 import MySelect from "../components/UI/Form/MySelect/MySelect";
+import MyTextarea from "../components/UI/Form/MyTextarea/MyTextarea";
 
 const OrderPlacementPage = () => {
     const [orders, setOrders] = useContext(OrderContext)
@@ -48,10 +49,9 @@ const OrderPlacementPage = () => {
                     Адреса:
                 </TextInput>
 
-                <label>Коментар до замовлення: </label>
-                <textarea value={''}></textarea>
+                <MyTextarea maxLength={200}>Коментар до замовлення: </MyTextarea>
 
-                <RedButton type={'submit'}>Замовити!</RedButton>
+                <RedButton style={{marginTop: 5}} type={'submit'}>Замовити!</RedButton>
             </form>
         </main>
     );

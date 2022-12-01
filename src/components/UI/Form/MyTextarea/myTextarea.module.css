@@ -1,0 +1,59 @@
+.labelBox{
+    display: grid;
+    grid-template-columns: 200px 3fr 1fr;
+    grid-row: 2;
+    grid-column-gap: 5px;
+    padding: 5px 0;
+}
+
+.myArea{
+    appearance: none;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 5px;
+    resize: none;
+    margin-top: 3px;
+    outline: none;
+    border: 1px solid #eeeeee;
+}
+
+@media (min-width: 601px) and (max-width: 936px) {
+    .labelBox{
+        grid-template-columns: 1fr;
+    }
+
+    .myArea{
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        height: 3em;
+    }
+}
+
+@media (min-width: 321px) and (max-width: 600px) {
+    .labelBox{
+        grid-template-columns: 1fr;
+    }
+
+    .myArea{
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        height: 5em;
+    }
+}
+
+@media (max-width: 320px) {
+    .labelBox{
+        grid-template-columns: 1fr;
+    }
+
+    .myArea{
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        height: 7em;
+    }
+}

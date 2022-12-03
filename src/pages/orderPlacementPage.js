@@ -60,15 +60,16 @@ const OrderPlacementPage = () => {
 
     const onSubmit = (e)=>{
         e.preventDefault()
-        let resCode = OrderPlacementService.postOrder(clientInfo, orders)
-        console.log(resCode)
-        if(resCode === 200) {
-            // setOrders([])
-            navigate('/')
-            setSuccessAlertVisible(true)
-        }else {
-            setIsErrorAlertVisible(true)
-        }
+        OrderPlacementService.postOrder(clientInfo, orders).then(res=>{
+            let resCode=res.status
+            if(resCode === 200) {
+                setOrders([])
+                navigate('/')
+                setSuccessAlertVisible(true)
+            }else {
+                setIsErrorAlertVisible(true)
+            }
+        })
     }
 
     return (

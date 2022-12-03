@@ -1,24 +1,13 @@
 import axios from "axios";
 
-axios.defaults.proxy = {
-    auth: {
-        username: 'mikeymike',
-        password: 'rapunz3l'
-    },
-    protocol: 'http',
-    host: 'localhost',
-    port: 8080,
-}
-
 const OrderPlacementService = {
-    url: '/api/order-placement',
+    url: 'http://localhost:8080/api/order-placement',
 
-    postOrder: async (deliveryInfo, orderList) => {
+    postOrder:  async (deliveryInfo, orderList) => {
         let normalOrderList = OrderPlacementService.normalizeOrderList(orderList)
-        let dataJson = JSON.stringify({...deliveryInfo, productInOrderList: normalOrderList})
-        console.log(dataJson)
+        let dataRaw = {...deliveryInfo, productInOrderList: normalOrderList}
 
-        return (await axios.post(OrderPlacementService.url, dataJson)).status
+        return await axios.post(OrderPlacementService.url, {...dataRaw})
     },
 
     normalizeOrderList: (orders) => {

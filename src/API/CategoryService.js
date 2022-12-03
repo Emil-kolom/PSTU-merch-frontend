@@ -1,5 +1,4 @@
 import axios from "axios";
-import {configure} from "@testing-library/react";
 
 axios.defaults.proxy = {
     auth: {

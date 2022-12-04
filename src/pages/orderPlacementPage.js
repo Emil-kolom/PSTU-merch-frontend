@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {OrderContext} from "../context/OrderContext";
 import '../styles/container.css'
 import TextInput from "../components/UI/Form/TextInput/TextInput";
@@ -9,8 +9,6 @@ import MyTextarea from "../components/UI/Form/MyTextarea/MyTextarea";
 import {OrderPlacementAlert} from "../context/OrderPlacmentAlert";
 import {useNavigate} from "react-router-dom";
 import OrderPlacementService from "../API/OrderPlacmentService";
-import {useFetch} from "../hooks/useFetch";
-import CategoryService from "../API/CategoryService";
 
 const OrderPlacementPage = () => {
     const [orders, setOrders] = useContext(OrderContext)

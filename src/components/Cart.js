@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {Drawer} from "@mui/material";
 import ListItem from "./UI/ListItem/ListItem";
 import LeftArrow from "../img/svg/leftArrow";
@@ -12,6 +12,17 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
 
     const [orders, setOrders] = useContext(OrderContext)
     const navigate = useNavigate()
+    let appInit = useRef(false)
+
+    useEffect(()=>{
+        if(!appInit.current){
+            appInit.current = true
+            return;
+        }
+        if(orders.length !== 0) {
+            setIsDrawerOpen(true)
+        }
+    }, [orders])
 
     return (
             <Drawer

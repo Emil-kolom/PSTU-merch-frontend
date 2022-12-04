@@ -17,6 +17,7 @@ const OrderPlacementPage = () => {
     const navigate = useNavigate()
     const [, setSuccessAlertVisible] = useContext(OrderPlacementAlert)
     const [isErrorAlertVisible, setIsErrorAlertVisible] = useState(false)
+    const [sumPrice, setSumPrice] = useState(0)
 
     const [clientInfo, setClientInfo] = useState({
         firstName: '',
@@ -55,26 +56,26 @@ const OrderPlacementPage = () => {
         if(orders.length == 0){
             navigate('/')
         }
+        setSumPrice(orders.reduce((sum, order)=>{
+            return sum + order.price * order.quantity
+        }, 0))
     }, [orders])
 
 
     const onSubmit = (e)=>{
         e.preventDefault()
         OrderPlacementService.postOrder(clientInfo, orders).then(res=>{
-            let resCode=res.status
-            if(resCode === 200) {
                 setOrders([])
                 navigate('/')
                 setSuccessAlertVisible(true)
-            }else {
-                setIsErrorAlertVisible(true)
-            }
+            }).catch(e=>{
+            setIsErrorAlertVisible(true)
         })
     }
 
     return (
         <main className={'container orderPlacementForm'}>
-            <h2>Загальна сума: 12 Грн</h2>
+            <h2>Загальна сума: {sumPrice} Грн</h2>
             <h3>Введіть дані для доставки:</h3>
             <form onSubmit={onSubmit}>
                 <TextInput value={clientInfo.firstName}

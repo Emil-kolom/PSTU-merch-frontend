@@ -22,7 +22,7 @@
     /*border: 1px solid rgba(107, 107, 107, 0.25);*/
 
     border-radius: 20px;
-    font-size: 2em;
+    font-size: 1.5em;
     background: none;
     cursor: pointer;
     padding: 3px 12px 8px 12px;
@@ -38,4 +38,12 @@
     /*border: 0;*/
     color: rgba(0, 0,0, 0.85);
     box-shadow: 5px 5px 3px #0c426f, -5px -5px 3px #0c426f, -5px 5px 3px #0c426f, 5px -5px 3px #0c426f ;
+}
+
+.price{
+    font-size: 1.2em;
+    font-weight: bolder;
+    margin: 0 10px;
+    width: max-content;
+    border-bottom: 2px solid rgba(211, 29, 29, 0.92);
 }

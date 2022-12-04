@@ -42,7 +42,7 @@ const ProductPage = () => {
     return (
         isLoading ?
             <main className={'container'}>
-                <h1>{productInfo.title}</h1>
+                <h1>{productInfo.name}</h1>
                 <Swiper
                     // install Swiper modules
                     modules={[Navigation, Pagination, A11y]}
@@ -66,7 +66,7 @@ const ProductPage = () => {
                         <button className={'buyButton'} onClick={onAddToCart}>Купити!</button>
                     </div>
                     :
-                    <span>Товару немає в наявності</span>
+                    <span className={'price'}>Товару немає в наявності</span>
                 }
                 {
                     productInfo.warehouses.length > 0 ?

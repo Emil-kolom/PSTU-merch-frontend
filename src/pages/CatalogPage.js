@@ -23,6 +23,15 @@ const CatalogPage = () => {
         fetchCategory()
     }, [])
 
+    function getPrice(product){
+        if(product.warehouses.length>0) {
+            return product.warehouses.reduce((value, inStoke) => Math.min(value, inStoke.price), +Infinity)
+        }
+        else {
+                return "Немає в наявності"
+        }
+    }
+
 
     return (
         isLoading2 ?
@@ -33,7 +42,8 @@ const CatalogPage = () => {
                         return <Card key={product.id}
                                      page={`/product/${product.id}`}
                                      header={product.name}
-                                     imgPath={'/'}
+                                     imgPath={product.imgPath}
+                                     price={getPrice(product)}
                         >
                         </Card>
                     })}

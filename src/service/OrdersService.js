@@ -72,7 +72,6 @@ export class OrdersService {
         if(quantity) {
             let newOrderList = [].concat(orderList)
             newOrderList[orderIndex] = updOrder
-            console.log(newOrderList.filter((item, ind) => ind !== existsInd))
             setOrderList(newOrderList.filter((item, ind) => ind !== existsInd));
         }else{
             OrdersService.updOrdersWithIndx(orderContext, updOrder, orderIndex)

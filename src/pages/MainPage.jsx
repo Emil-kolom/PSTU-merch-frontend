@@ -33,7 +33,7 @@ const MainPage = () => {
                     return <Card key={category.id}
                                  page={category.url}
                                  header={category.name}
-                                 imgPath={'/'}
+                                 imgPath={category.imgDirPath}
                     >
                     </Card>
                 })}

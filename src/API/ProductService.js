@@ -1,12 +1,5 @@
 import axios from "axios";
 
-axios.defaults.proxy = {
-    auth: {
-        username: 'mikeymike',
-        password: 'rapunz3l'
-    }
-}
-
 const ProductService = {
     url: '/api/product',
 

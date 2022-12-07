@@ -17,10 +17,7 @@ const ImgLink = ({page, ...props}) => {
               onMouseLeave={() => setHoverVisible(false)}
               {...props}
         >
-            <picture>
-                <source srcSet={testLogo}/>
-                <img alt={'TEST'} src={testLogo}/>
-            </picture>
+            <img className={classes.imgContainer} src={props.MainImg} alt={props.page + 'img'}/>
             {isHoverVisible ? hoverLink : null}
         </Link>
     );

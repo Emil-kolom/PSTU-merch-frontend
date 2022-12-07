@@ -16,7 +16,7 @@ const Card = (props) => {
 
 	return (
 		<div className={classes.cardWrap}>
-			<ImgLink page={props.page}/>
+			<ImgLink page={props.page} MainImg={props.imgPath}/>
 			{props.price?
 				<div className={classes.price}>{setPrice(props.price)}</div>:
 				null

@@ -54,7 +54,9 @@ const ListItem = ({onRedirect, onDelete, onChangeQuantity, onChangeSize, order})
                              minWidth: '160px',
                              maxHeight: '150px',
                              boxSizing: 'border-box'
-                         }}/>
+                         }}
+                         MainImg ={order.imgPath}
+                />
                 <button className={classes.delProd}
                         onClick={onDelete}
                 >Прибрати</button>

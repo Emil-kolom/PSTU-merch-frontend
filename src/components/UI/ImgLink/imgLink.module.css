@@ -50,3 +50,8 @@
 .cardRoot:hover {
     background: rgba(117, 117, 117, 0.15);
 }
+
+.imgContainer{
+    width: auto;
+    height: 100%;
+}

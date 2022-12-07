@@ -15,6 +15,6 @@ export const ImgService = {
 
     getImgByCategoryId: async (category) => {
         let productList = (await CategoryService.getProductListByCategory("/" + category.url)).data
-        return ImgService.getImgListByDirPath(productList[0].imgDirPath)
+        return (await ImgService.getImgListByDirPath(productList[0].imgDirPath)).data[0].imgUrl
     }
 };

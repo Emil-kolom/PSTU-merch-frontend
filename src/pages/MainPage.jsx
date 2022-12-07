@@ -8,6 +8,7 @@ import CategoryService from "../API/CategoryService";
 import ProductService from "../API/ProductService";
 import {Alert, AlertTitle, Snackbar} from "@mui/material";
 import {OrderPlacementAlert} from "../context/OrderPlacmentAlert";
+import {ImgService} from "../API/ImgService";
 
 
 const MainPage = () => {
@@ -16,7 +17,15 @@ const MainPage = () => {
            setAlertVisible_successfulOrderPlacement] = useContext(OrderPlacementAlert)
 
     const [fetchCategory] = useFetch(async () => {
-        const response = await CategoryService.getCategory();
+        const response = await CategoryService.getCategory().then(async res=>{
+            let len = res.data.length
+            for (let i = 0; i < len; ++i){
+                let data = res.data[i]
+                let imgPath = await ImgService.getImgByCategoryId(data)
+                res.data[i] = {...data, imgPath: imgPath}
+            }
+            return res
+        })
         setCategories(response.data)
     })
 
@@ -33,7 +42,7 @@ const MainPage = () => {
                     return <Card key={category.id}
                                  page={category.url}
                                  header={category.name}
-                                 imgPath={category.imgDirPath}
+                                 imgPath={category.imgPath}
                     >
                     </Card>
                 })}

@@ -13,10 +13,11 @@ import {A11y, Navigation, Pagination, Scrollbar} from "swiper";
 import {useFetch} from "../hooks/useFetch";
 import {OrderContext} from "../context/OrderContext";
 import {Order, OrdersService} from "../service/OrdersService";
+import {ImgService} from "../API/ImgService";
 
 const ProductPage = () => {
     let urlParams = useParams()
-    let [imgSetPath, setImgSetPath] = useState(['/img/caps/1.png', '/logo192.png'])
+    let [imgSetPath, setImgSetPath] = useState([])
     let [productInfo, setProductInfo] = useState()
     let [currentSize, setCurrentSize] = useState(0)
     let [isLoading, setLoading] = useState(false)
@@ -25,6 +26,8 @@ const ProductPage = () => {
     const [fetchProductById] = useFetch(async (id) => {
         const response = await ProductService.getProduct(urlParams.id);
         setProductInfo(response.data)
+        const imgDirList = await ImgService.getImgListByDirPath(response.data.imgDirPath)
+        setImgSetPath(imgDirList.data.map(src=>src.imgUrl))
         setLoading(true)
     }, navigate)
 

@@ -1,5 +1,6 @@
 import {createContext, useEffect, useState} from "react";
-import {OrdersService} from "../service/OrdersService";
+import {Order, OrdersService} from "../service/OrdersService";
+import {ImgService} from "../API/ImgService";
 
 export const OrderContext = createContext();
 
@@ -9,11 +10,14 @@ export const OrderContextProvider = (props) => {
     useEffect(()=>{
         let initOrders = JSON.parse(localStorage.getItem('orders'))
         if(!initOrders)
-            initOrders = []
+            setOrders([])
         else{
-            initOrders = OrdersService.getNewProductInfo(initOrders)
+            OrdersService.getNewProductInfo(initOrders).then(res=>{
+                setOrders(res)
+            }).catch(reason=>{
+                setOrders([])
+            })
         }
-        setOrders(initOrders)
     },[])
 
     useEffect(()=>{

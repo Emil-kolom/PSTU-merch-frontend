@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useMemo, useRef} from 'react';
 import {Drawer} from "@mui/material";
 import ListItem from "./UI/ListItem/ListItem";
 import LeftArrow from "../img/svg/leftArrow";
@@ -6,6 +6,7 @@ import '../styles/cart.css';
 import {OrderContext} from "../context/OrderContext";
 import {Order, OrdersService} from "../service/OrdersService";
 import {useNavigate} from "react-router-dom";
+import {ImgService} from "../API/ImgService";
 
 
 const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {

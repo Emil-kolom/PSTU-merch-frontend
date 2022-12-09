@@ -21,6 +21,7 @@ const ProductPage = () => {
     let [productInfo, setProductInfo] = useState()
     let [currentSize, setCurrentSize] = useState(0)
     let [isLoading, setLoading] = useState(false)
+    const [isOrderAppend, setIsOrderAppend] = useState(false)
     let navigate = useNavigate()
 
     const [fetchProductById] = useFetch(async (id) => {
@@ -38,9 +39,16 @@ const ProductPage = () => {
 
     const  orderContext = useContext(OrderContext)
     function onAddToCart() {
-        let order = new Order(productInfo, currentSize)
-        OrdersService.onAddToCart(orderContext, order)
+        setIsOrderAppend(true)
     }
+
+    useEffect(() => {
+        if(isOrderAppend){
+            let order = new Order(productInfo, currentSize)
+            OrdersService.onAddToCart(orderContext, order)
+        }
+        setIsOrderAppend(false)
+    }, [isOrderAppend])
 
     return (
         isLoading ?

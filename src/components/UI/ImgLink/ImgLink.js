@@ -3,7 +3,7 @@ import classes from "./imgLink.module.css";
 import testLogo from "../../../img/logo.svg";
 import {Link} from "react-router-dom";
 
-const ImgLink = ({page, ...props}) => {
+const ImgLink = ({page,MainImg, ...props}) => {
     const [isHoverVisible, setHoverVisible] = useState(false)
     let hoverLink = <div className={classes.hoverWrap}>
         <button
@@ -17,7 +17,7 @@ const ImgLink = ({page, ...props}) => {
               onMouseLeave={() => setHoverVisible(false)}
               {...props}
         >
-            <img className={classes.imgContainer} src={props.MainImg} alt={props.page + 'img'}/>
+            <img className={classes.imgContainer} src={MainImg} alt={page + 'img'}/>
             {isHoverVisible ? hoverLink : null}
         </Link>
     );

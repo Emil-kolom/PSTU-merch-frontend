@@ -26,7 +26,9 @@ export class OrdersService {
                 }
             })
             if (newCurSizeInd > -1) {
-                newOrder.push(new Order(productInfo, newCurSizeInd))
+                let order = new Order(productInfo, newCurSizeInd)
+                order.quantity = orders[i].quantity
+                newOrder.push(order)
             }
         }
 
@@ -37,23 +39,22 @@ export class OrdersService {
         return newOrder
     }
 
-    static async onAddToCart(orderContext, order) {
+    static async onAddToCart(orderContext, newOrder) {
         const [orderList, setOrderList] = orderContext
 
         // if order exists
         let quantity, ind;
-        orderList.map((i, indx) => {
-            if (i.id === order.id &&
-                i.size === order.size) {
-                quantity = i.quantity
+        orderList.map((order, indx) => {
+            if (order.id === newOrder.id &&
+                order.size === newOrder.size) {
+                quantity = order.quantity + 1
                 ind = indx
+                let updOrder = Order.updOrderVal('quantity', quantity, order)
+                OrdersService.updOrdersWithIndx(orderContext, updOrder, ind)
             }
         })
-        if (quantity) {
-            order.quantity += quantity
-            OrdersService.updOrdersWithIndx(orderContext, order, ind)
-        } else {
-            let newOrderList = [...orderList, order]
+        if (!quantity){
+            let newOrderList = [...orderList, newOrder]
             const setOrders = (prevState) => {
                 newOrderList = prevState(newOrderList)
             }

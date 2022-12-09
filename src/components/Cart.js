@@ -3,7 +3,7 @@ import {Drawer} from "@mui/material";
 import ListItem from "./UI/ListItem/ListItem";
 import LeftArrow from "../img/svg/leftArrow";
 import '../styles/cart.css';
-import {OrderContext} from "../context/OrderContext";
+import {OrderContext, OrderLoadContext} from "../context/OrderContext";
 import {Order, OrdersService} from "../service/OrdersService";
 import {useNavigate} from "react-router-dom";
 import {ImgService} from "../API/ImgService";
@@ -13,10 +13,14 @@ const Cart = ({isDrawerOpen, setIsDrawerOpen}) => {
 
     const [orders, setOrders] = useContext(OrderContext)
     const navigate = useNavigate()
-    let appInit = useRef(false)
+    const appInit = useRef(false)
+    const isOrdersLoad= useContext(OrderLoadContext)
 
     useEffect(()=>{
-        if(!appInit.current){
+        if(!isOrdersLoad){
+            return;
+        }
+        if(!appInit.current) {
             appInit.current = true
             return;
         }

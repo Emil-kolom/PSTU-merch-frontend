@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classes from "./list-item.module.css";
 import ImgLink from "../ImgLink/ImgLink";
 
@@ -8,6 +8,7 @@ const ListItem = ({onRedirect, onDelete, onChangeQuantity, onChangeSize, order})
     const [productCount, setProductCount] = useState(order.quantity)
     const [inputText, setInputText] = useState(`${order.quantity}`)
     const [curSizeSelect, setCurSizeSelect ] = useState(order.size)
+    const appInit = useRef(false)
 
     useEffect(()=>{
         setInputText(`${productCount}`)
@@ -15,6 +16,10 @@ const ListItem = ({onRedirect, onDelete, onChangeQuantity, onChangeSize, order})
     }, [productCount])
 
     useEffect(()=>{
+        if(!appInit.current){
+            appInit.current = true
+            return
+        }
         setProductCount(order.quantity)
     },[order])
 
